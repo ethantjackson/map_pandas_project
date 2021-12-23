@@ -31,11 +31,7 @@ while len(found_states) < 50 and lives > 0:
         lives -= 1
 
 data_dict = data.to_dict()
-missed_states = []
-for state in data_dict['state']:
-    s = data_dict['state'][state]
-    if s not in found_states:
-        missed_states.append(s)
+missed_states = [data_dict['state'][state] for state in data_dict['state'] if data_dict['state'][state] not in found_states]
 
 pandas.DataFrame(missed_states, columns=["Missed States"]).to_csv("missed_states.csv")
 
